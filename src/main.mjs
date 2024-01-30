@@ -1,7 +1,6 @@
 import { execSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { InitError } from './errors.mjs'
 import { parseArgs } from './utils/args-parsing.mjs'
 
 const AUR_LINK = 'https://aur.archlinux.org'
@@ -34,15 +33,19 @@ function installPackage(pkg) {
 }
 
 function main () {
-  const packages = parseArgs()
-  if (packages.length === 0) throw new InitError('Please specify the name of the packages that you want to install.')
+  try {
+    const packages = parseArgs()
 
-  console.log(`Looking for ${AURA_DIR} directory...`)
-  if (!existsSync(AURA_DIR)) createDirectory(AURA_DIR)
+    console.log(`Looking for ${AURA_DIR} directory...`)
+    if (!existsSync(AURA_DIR)) createDirectory(AURA_DIR)
 
-  packages.forEach(pkg => cloneGitPackage(AUR_LINK, pkg, AURA_DIR))
-  packages.forEach(pkg => buildPackage(pkg))
-  packages.forEach(pkg => installPackage(pkg))
+    packages.forEach(pkg => cloneGitPackage(AUR_LINK, pkg, AURA_DIR))
+    packages.forEach(pkg => buildPackage(pkg))
+    packages.forEach(pkg => installPackage(pkg))
+  } catch (error) {
+    if (error.name === 'InputError') console.error(error.message)
+    else console.error('Unknown error.')
+  }
 }
 
 main()

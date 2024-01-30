@@ -6,4 +6,4 @@ const createErrorFactory = name =>
     }
   }
 
-export const InitError = createErrorFactory('Initialization Error')
+export const InputError = createErrorFactory('InputError')
