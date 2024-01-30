@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process'
 import { existsSync, mkdir, readdirSync } from 'node:fs'
 import { homedir } from 'node:os'
+import { InitError } from './errors.mjs'
 import { parseArgs } from './utils/args-parsing.mjs'
 
 const AUR_LINK = 'https://aur.archlinux.org/'
@@ -9,7 +10,7 @@ const AURA_DIR = `${homedir()}/aura`
 function main () {
   const packages = parseArgs()
   if (packages.length === 0)
-    throw new Error('Please specify the name of the packages that you want to install.')
+    throw new InitError('Please specify the name of the packages that you want to install.')
 
   console.log(`Looking for ${AURA_DIR} directory...`)
   if (!existsSync(AURA_DIR)) {
