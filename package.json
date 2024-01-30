@@ -1,0 +1,17 @@
+{
+  "name": "aura",
+  "version": "1.0.0",
+  "description": "JavaScript AUR (Arch User Repository) helper.",
+  "main": "./src/main.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AUR"
+  ],
+  "bin": {
+    "aura": "./src/main.mjs"
+  },
+  "author": "lftdev",
+  "license": "ISC"
+}
