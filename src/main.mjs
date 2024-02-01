@@ -25,7 +25,6 @@ function main () {
   } catch (error) {
     if (error.name === 'InputError') console.error(error.message)
     else console.error('Unknown error.')
-  console.log(error)
   }
 }
 
