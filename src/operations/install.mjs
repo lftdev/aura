@@ -7,13 +7,13 @@ export function cloneGitPackage (link, pkg, targetDir) {
   execSync(`git clone ${git_pkg}`, { cwd: targetDir })
 }
 
-export function buildPackage (pkg) {
+export function buildPackage (pkg, dir) {
   console.log(`Building ${pkg} package and installing its dependencies.`)
   const pkg_path = `${dir}/${pkg}`
   execSync('makepkg -s', { cwd: pkg_path })
 }
 
-export function installPackage(pkg) {
+export function installPackage(pkg, dir) {
   const pkg_path = `${dir}/${pkg}`
   const zst = readdirSync(pkg_path).find(file => file.endsWith('.zst'))
   if (zst) {

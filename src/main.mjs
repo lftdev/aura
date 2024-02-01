@@ -20,8 +20,8 @@ function main () {
     if (!existsSync(AURA_DIR)) createDirectory(AURA_DIR)
 
     packages.forEach(pkg => cloneGitPackage(AUR_LINK, pkg, AURA_DIR))
-    packages.forEach(pkg => buildPackage(pkg))
-    packages.forEach(pkg => installPackage(pkg))
+    packages.forEach(pkg => buildPackage(pkg, AURA_DIR))
+    packages.forEach(pkg => installPackage(pkg, AURA_DIR))
   } catch (error) {
     if (error.name === 'InputError') console.error(error.message)
     else console.error('Unknown error.')
