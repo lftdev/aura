@@ -9,12 +9,12 @@ export function cloneGitPackage (link, pkg, targetDir) {
 
 export function buildPackage (pkg) {
   console.log(`Building ${pkg} package and installing its dependencies.`)
-  const pkg_path = `${AURA_DIR}/${pkg}`
+  const pkg_path = `${dir}/${pkg}`
   execSync('makepkg -s', { cwd: pkg_path })
 }
 
 export function installPackage(pkg) {
-  const pkg_path = `${AURA_DIR}/${pkg}`
+  const pkg_path = `${dir}/${pkg}`
   const zst = readdirSync(pkg_path).find(file => file.endsWith('.zst'))
   if (zst) {
     console.log(`Installing ${pkg}.`)

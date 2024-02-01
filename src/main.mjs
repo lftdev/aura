@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, mkdirSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { parseArgs } from './utils/args-parsing.mjs'
+import { parseArguments } from './utils/args-parsing.mjs'
 import { buildPackage, cloneGitPackage, installPackage } from './operations/install.mjs'
 
 const AUR_LINK = 'https://aur.archlinux.org'
@@ -14,7 +14,7 @@ function createDirectory (dir) {
 
 function main () {
   try {
-    const packages = parseArgs()
+    const packages = parseArguments()
 
     console.log(`Looking for ${AURA_DIR} directory...`)
     if (!existsSync(AURA_DIR)) createDirectory(AURA_DIR)
@@ -25,6 +25,7 @@ function main () {
   } catch (error) {
     if (error.name === 'InputError') console.error(error.message)
     else console.error('Unknown error.')
+  console.log(error)
   }
 }
 
