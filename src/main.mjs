@@ -9,7 +9,7 @@ const AURA_DIR = `${homedir()}/aura`
 
 function createDirectory (dir) {
   console.log(`Creating ${dir} directory...`)
-  mkdirSync(dir, undefined, err => {if (err) throw err})
+  mkdirSync(dir)
 }
 
 function main () {
