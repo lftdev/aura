@@ -31,5 +31,5 @@ export function parseArguments () {
 
   if (args.length === 0) throw new InputError(`Please, specify the name of the packages that you want to install using ${installOption.short}/${installOption.long} option.`)
 
-  return parseArray(args, installOption)  
+  return parseArray(args, installOption)
 }
